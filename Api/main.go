@@ -56,13 +56,7 @@ func main() {
 	if error != nil{
 		panic(error)
 	}
-	error= aliment.Ping(ctx, nil)
-	if error !=nil{
-		log.Fatal(error)
-	}
-	log.Println("conectado a MongoDB")
-
-
+	conn := aliment.Database(name:"Restaurante").Collection(name:"Alimento")
 	router := gin.Default() 
 	 //es la primera peticion que ya se le hizo al servicio 
 	router.GET("/alimentos", getAlimento)
