@@ -10,18 +10,29 @@ useEffect(() =>{
     const url = 'http://localhost:8080/alimentos'
     const respuesta = await fetch(url)
     const resultado =await respuesta.json()
-    console.log('hola si sirvio')
-   // setAlimentoItems(resultado)
-    }catch(error){
-      console.error('error al obtener los alimentos', error)
-    }
+    setMenuItems(resultado);
+  } catch (error) {
+    console.error('Error al obtener los alimentos:', error);
+  }
   }
   consultarApi()
 },[])
 
   return (
     <>
+<ul>
+  
+    {alimentoItems.map(item=>{
+      <li key={item.id}> {item.name} {item.descripcion}
 
+      </li>
+    })
+
+    }
+
+    
+ 
+</ul>
     </>
   )
 }
