@@ -1,40 +1,37 @@
 "use client"
-import React from 'react'
-import { useEffect, useState } from 'react'
+import React, { useState,useEffect } from 'react'
+import axios from 'axios'
+import Card from '@/components/Card'
 
-const restaurant=()=> {
- const [alimentoItems, setAlimentoItems]= useState([])
-useEffect(() =>{
-  const consultarApi = async() =>{
+
+
+export default function Home() {
+  const [alimentoItems, setAlimentoItems]=useState([])
+useEffect(()=>{
+  const conectarApi= async()=>{
     try{
-    const url = 'http://localhost:8080/alimentos'
-    const respuesta = await fetch(url)
-    const resultado =await respuesta.json()
-    setMenuItems(resultado);
-  } catch (error) {
-    console.error('Error al obtener los alimentos:', error);
-  }
-  }
-  consultarApi()
-},[])
-
-  return (
-    <>
-<ul>
+      const response = await axios.get('http://localhost:8080/alimentos')
+      const data = await response.data
+ //console.log(data)
+      setAlimentoItems(data)
+    }catch(error){
+     console.error(error)
   
-    {alimentoItems.map(item=>{
-      <li key={item.id}> {item.name} {item.descripcion}
+    }}
+   conectarApi()
+  })
+    return (
+      <>
+      {alimentoItems.forEach(data=>{
+        <div key={data._id}> name:{data.name}</div>
+      })}
+      <ul> hola
 
-      </li>
-    })
-
-    }
-
+ </ul>
+  </>
+    )
+  }
+  
     
- 
-</ul>
-    </>
-  )
-}
-export default restaurant
 
+ 
