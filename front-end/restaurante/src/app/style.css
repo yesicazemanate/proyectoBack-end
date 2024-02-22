@@ -1,0 +1,115 @@
+.contenedorPrincipal{
+    padding: 10px;
+    display:flex;
+   flex-direction: row ;
+   justify-content: center;
+    margin: 15px;
+    gap: 50px;
+    height: 85vh;
+}
+header{
+    width: 100%;
+    height: 50px;
+   text-align: center;
+    background-color: rgb(158, 248, 158);
+}
+.titulo{
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+}
+.contenido1{
+    
+    width: 40%;
+    display: flex;
+    justify-content: center;  
+    align-items: center;  
+}
+.formu{
+    width: auto;
+}
+legend{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+    font-size: 20px;
+    
+}
+fieldset{ 
+    width: 25em;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color:rgb(179, 241, 179);
+    gap:40px;
+    
+  
+}
+input{
+    text-align: center;
+    height: 40px;
+    border-radius: 12px;
+
+}
+.boton{
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: rgb(235, 253, 122);
+    height: 50px;
+    width: 80px;
+}
+.boton:hover{
+    background-color: rgb(184, 199, 91);
+}
+.contenido{
+    width: 60%;
+    border: 2px solid;
+    border-radius: 10px;
+  height: max-content;
+}
+.titulos{
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    background-color: rgb(130, 235, 130);
+}
+.linea {
+    margin-bottom: 10px;
+   border: 1px solid black;/* Espacio alrededor de la línea */
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    
+}
+.contenedorProducto{
+    background-color: rgb(212, 241, 157);
+    width: 95%;
+    height: max-content;
+    border: 2px  #070707;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    margin: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+   
+}
+.decripcion{
+     background-color: rgb(212, 241, 157);
+    margin-top: 4%;
+    }
+.image{
+    border-radius: 30%;
+}
+.name{
+    font-weight: bolder;
+    margin-left: 20px;
+    font-size: larger;
+    text-align: center;
+    margin-top: 8%;
+}

@@ -12,7 +12,10 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 	
 )
-
+type Alimento struct{
+	name     string `json:"nombre"`
+    descripcion string `json:"descripcion"`
+}
 
  var mongoAliment *mongo.Client
 
@@ -61,10 +64,10 @@ func getAlimento(a *gin.Context){
 	a.JSON(http.StatusOK, alimentos)
 }
 func postAlimento(a *gin.Context){
-	var aliment map[string]interface{}
+	var aliment Alimento
 	if error := a.ShouldBindJSON(&aliment); error != nil{
 		a.JSON(http.StatusBadRequest, gin.H{"error": error.Error()})
-		if _, error := mongoAliment.Database("Restaurante").Collection("Alimento").Aggregate(context.TODO(), aliment); error != nil {
+		if _, error := mongoAliment.Database("Restaurante").Collection("Alimento").InsertOne(context.TODO(), aliment); error != nil {
 			a.JSON(http.StatusInternalServerError, gin.H{"error": error.Error()})
 			return
 		}
