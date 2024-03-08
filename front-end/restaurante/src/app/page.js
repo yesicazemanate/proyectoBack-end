@@ -1,19 +1,22 @@
 "use client"
 import React, { useState,useEffect } from 'react'
 import axios from 'axios'
-import Card from '@/components/Card'
 import Image from 'next/image'
 import '@/app/style.css'
 
+  
 
 export default function Home() {
-  const [alimentoItems, setAlimentoItems]=useState([])
+ const [alimentoItems, setAlimentoItems] =useState([])
+const [name, setName]=useState()
+const [description, setDescription]=useState()
+const [imagen, setImagen]=useState()
+
 useEffect(()=>{
   const conectarApi= async()=>{
     try{
       const response = await axios.get('http://localhost:8080/alimentos')
       const data = await response.data
- //console.log(data)
       setAlimentoItems(data)
     }catch(error){
      console.error(error)
@@ -21,6 +24,29 @@ useEffect(()=>{
     }}
    conectarApi()
   })
+  const handleData=async(event)=>{
+     event.preventDefault();
+     const dataRes={
+      name: event.target.Nombre.value,
+      description: event.target.Description.value,
+      image: event.target.Imagen.value
+     }
+    try{
+      const respuesta = await fetch('/alimentos/aggregate', {
+        method: "POST",
+        body: JSON.stringify(dataRes),
+        headers:{
+          "Content-Type": "application/json"
+        }
+      }
+      )
+      const data = await respuesta.json()
+      console.log(data)
+    }catch(error){
+console.log('error ', error)
+    }}
+  
+  
     return (
       <>
    <header>
@@ -29,16 +55,15 @@ useEffect(()=>{
         <div className="contenedorPrincipal"> 
         
         <div className="contenido1">
-        <form className="formu">
-            <fieldset>
+        <form className="formu" onSubmit={()=>handleData}  method="post"><fieldset>
               <h1>Ingrese Informacion de alimentos</h1>
                 <legend className='contenedorTitulo'></legend>
-                <input required type="text" placeholder="Ingrese Nombre" />
-                <input required type="text" placeholder="Ingrese Descripcion" />
-                <input required type="text" placeholder="Ingrese Imagen" />
+                <input required type="text" name="Nombre" value={name} onChange={(e) => setName(e.target.value)} placeholder="Ingrese Nombre" />
+                <input required type="text" name="Description" value={description} onChange={(e) => setDescription(e.target.value)}placeholder="Ingrese Descripcion" />
+                <input required type="text" name="Imagen" value={imagen} onChange={(e) => setImagen(e.target.value)} placeholder="Ingrese Imagen"/>
                 <button type="submit" className="boton" >Enviar</button>
-               </fieldset>
               
+                </fieldset>
         </form>
         </div>
         <div className="contenido">
@@ -58,8 +83,8 @@ useEffect(()=>{
 
         </>
     )
-}
+
 
     
-
+}
  
